@@ -5,9 +5,23 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { StaticApp } = require('@keystonejs/app-static');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo')(expressSession);
+
+
 
 const keystone = new Keystone({
   adapter: new MongooseAdapter({ mongoUri: 'mongodb+srv://gbactakaha:Ctakan91@cluster0.nks7a.mongodb.net/keystone-js-quickstart?retryWrites=true&w=majority' }),
+  sessionStore: new MongoStore({
+    url: 'mongodb+srv://gbactakaha:Ctakan91@cluster0.nks7a.mongodb.net/keystone-js-quickstart?retryWrites=true&w=majority',
+  }),
+  cookieSecret: '6ArmOCyoLiCWMIlhOkG+6eQ+mWyFM4yF',
+
+  defaultAccess: {
+    list: true,
+    field: true,
+    custom: true,
+  },
 });
 
 const { userIsAdmin } = require('./utils/access');

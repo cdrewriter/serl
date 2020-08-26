@@ -49,7 +49,7 @@ const SpareCategoryList = () => {
 
   const result = useGraphQL({
     fetchOptionsOverride(options) {
-      options.url = `${process.browser ? 'https://ventservis74.ru/' : 'http://localhost:3000'}/admin/api`;
+      options.url = `${process.browser ? '' : 'http://localhost:3000'}/admin/api`;
     },
     operation: {
       query: /* GraphQL */ `
